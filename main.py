@@ -13,7 +13,6 @@ def test_func(text_label):
     ctrl = False
 
     def on_keyrelease(key):
-        print("Keyrelease")
         nonlocal ctrl
         try:
             if key == pynput.keyboard.Key.ctrl_l or key == pynput.keyboard.Key.ctrl_r:
@@ -47,13 +46,11 @@ def test_func(text_label):
 
         except Exception as e:
             # Couldn't read a keypress, who cares
-            print(e)
             pass
 
     key_listener = pynput.keyboard.Listener(
         on_press=on_keypress, on_release=on_keyrelease
     )
-    print("starting listener")
     key_listener.start()
     key_listener.join()
 
