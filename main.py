@@ -24,7 +24,6 @@ def test_func(text_label):
     def on_keypress(key):
         global keys
         nonlocal ctrl
-        print("Keypress")
 
         try:
             # Check for ctrl press
@@ -32,13 +31,15 @@ def test_func(text_label):
                 ctrl = True
             # Check for esc key
             elif key == pynput.keyboard.Key.esc:
-                keys += "󱊷  "
+                # keys += "󱊷  "
+                keys += "Esc"
             # Check for enter
             elif key == pynput.keyboard.Key.enter:
-                keys += " "
+                keys += "Enter"
             # Generic key press
             else:
-                keys += key.char if not ctrl else ("󱞩 " + key.char)
+                # TODO: Fix Nerd Font
+                keys += key.char if not ctrl else ("Ctrl+c")
             # On success of reading key, update gui
             if len(keys) > NUM_VISIBLE_KEYS:
                 keys = "..." + keys[len(keys) - NUM_VISIBLE_KEYS :]
@@ -79,7 +80,7 @@ button.pack()
 
 # Create the label widget
 label = tk.Label(
-    root, textvariable=label_text, font=("JetBrainsMonoNerdFont-Regular", 30, "bold")
+    root, textvariable=label_text, font=("JetBrainsMono Nerd Font", 30, "bold")
 )
 label.pack(pady=5)
 
